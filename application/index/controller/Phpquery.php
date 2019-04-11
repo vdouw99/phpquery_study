@@ -21,4 +21,17 @@ class Phpquery
         //打印结果
         print_r($data->all());
     }
+
+    public function getListByVdouwMoban()
+    {
+        $url = 'http://www.vdouw.com/moban/';
+        $rules = ['title' => ['.v.mobanAlert', 'title'], 'image' => ['img.img', 'src']];
+        $range = 'ul.index.list li';  //切片选择器
+        $rt = QueryList::get($url)->rules($rules)->range($range)->query()->getData();
+//        print_r($rt->all());
+        $result = $rt->all();
+        foreach ($result as $key => $value) {
+            echo($value['title'] . " -》" . $value['image'] . "<br>");
+        }
+    }
 }
