@@ -8,10 +8,11 @@
 
 namespace app\index\controller;
 
-
 use QL\QueryList;
 
-class Phpquery
+libxml_use_internal_errors(true);  //enable user error handling
+
+class Test
 {
     public function index()
     {
@@ -28,7 +29,7 @@ class Phpquery
         $rules = ['title' => ['.v.mobanAlert', 'title'], 'image' => ['img.img', 'src']];
         $range = 'ul.index.list li';  //切片选择器
         $rt = QueryList::get($url)->rules($rules)->range($range)->query()->getData();
-//        print_r($rt->all());
+        //print_r($rt->all());
         $result = $rt->all();
         foreach ($result as $key => $value) {
             echo($value['title'] . " -》" . $value['image'] . "<br>");
